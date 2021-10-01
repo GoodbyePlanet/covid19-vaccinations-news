@@ -1,41 +1,43 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Particles from "react-tsparticles";
-import logo from './logo.svg';
-import './App.css';
-import particlesOptions from "./particles.json";
-import { ISourceOptions } from "tsparticles";
+import {ISourceOptions} from "tsparticles";
 
-function App() {
-    return (
-        <div className="App">
-            <Particles options={particlesOptions as ISourceOptions}/>
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <p>
-                    Edit <code>src/particles.json</code> to customize Particles, then save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-                <a
-                    className="App-link"
-                    href="https://particles.js.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    See Particles samples
-                </a>
-            </header>
-        </div>
-    );
+import particlesOptions from "./particles.json";
+
+import './App.css';
+import Country from "./Country";
+import {CovidCountry} from "./types";
+
+const App = (): JSX.Element => {
+  const [serbiaData, setSerbiaData] = useState<CovidCountry>();
+  const [bosniaData, setBosniaData] = useState<CovidCountry>();
+
+  useEffect(() => {
+    const getCovidData = async () => {
+      const data = await fetch('https://covid.ourworldindata.org/data/owid-covid-data.json');
+      const dataJson = await data.json();
+
+      console.log(dataJson)
+
+      setSerbiaData(dataJson.SRB);
+      setBosniaData(dataJson.BIH);
+    }
+
+    getCovidData();
+  }, []);
+
+  return (
+    <>
+      <Particles options={particlesOptions as ISourceOptions}/>
+      <header className="header">
+        <h1>Covid-19 Vaccinations News</h1>
+      </header>
+      <div className="app-container">
+        <Country countryData={serbiaData as CovidCountry}/>
+        <Country countryData={bosniaData as CovidCountry}/>
+      </div>
+    </>
+  );
 }
 
 export default App;

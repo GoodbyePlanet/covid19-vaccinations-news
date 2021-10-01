@@ -1,38 +1,117 @@
-.App {
+body {
+    font-family: "Roboto Mono Light for Powerline", serif;
+    color: #ced7e3;
+}
+
+h1, h2 {
+    margin: 0;
     text-align: center;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+.header {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.app-container {
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    margin: auto;
 }
 
-.App-header {
-    min-height: 100vh;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 40%;
+    margin: 1rem;
+}
+
+.population-container {
+    border: 1px solid #393b4d;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 60px 40px -7px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    margin-bottom: 5rem;
+    width: 100%;
 }
 
-.App-link {
-    color: #61dafb;
+.population-container h1 {
+    padding-bottom: 30px;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+.vaccinated-one-dose-container {
+    border: 1px solid #393b4d;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 60px 40px -7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    margin-bottom: 5rem;
+    width: 100%;
+}
+
+.vaccinated-two-doses-container {
+    border: 1px solid #393b4d;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 60px 40px -7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    width: 100%;
+}
+
+.separator {
+    width: 10px;
+}
+
+.red-numbers {
+    padding-top: .3rem;
+    color: #c03030;
+}
+
+.percentage-numbers {
+    color: #a9885c;
+}
+
+@media only screen and (max-width: 1200px) {
+    .app-container {
+        flex-direction: column;
     }
-    to {
-        transform: rotate(360deg);
+
+    .header {
+        margin-bottom: 30px;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0 0 1rem;
+    }
+
+    .population-container {
+        /*width: 100%;*/
+        margin-bottom: 1rem;
+    }
+
+    .vaccinated-one-dose-container {
+        /*width: 100%;*/
+        margin-bottom: 1rem;
+    }
+
+    .vaccinated-two-doses-container {
+        width: 100%;
+        /*margin: 0;*/
     }
 }
 
@@ -46,3 +125,4 @@
     top: 0;
     z-index: -1;
 }
+
