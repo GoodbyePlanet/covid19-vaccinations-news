@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Particles from "react-tsparticles";
 import {ISourceOptions} from "tsparticles";
+import {CovidCountry} from "./types";
+import Country from "./Country";
 
 import particlesOptions from "./particles.json";
 
 import './App.css';
-import Country from "./Country";
-import {CovidCountry} from "./types";
 
 const App = (): JSX.Element => {
   const [serbiaData, setSerbiaData] = useState<CovidCountry>();
