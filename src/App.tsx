@@ -29,16 +29,8 @@ const App = (): JSX.Element => {
         }
       }
 
-      const setSerbiaVaccinationData = (): void => {
-        setSerbiaData(extractData("SRB"));
-      }
-
-      const setBosniaVaccinationData = (): void => {
-        setBosniaData(extractData("BIH"));
-      }
-
-      setSerbiaVaccinationData();
-      setBosniaVaccinationData();
+      setSerbiaData(extractData("SRB"));
+      setBosniaData(extractData("BIH"));
     }
 
     getCovidData();
