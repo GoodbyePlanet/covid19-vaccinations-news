@@ -37,16 +37,19 @@ const Country = ({countryData}: Props): JSX.Element => {
           <h1>{countryData?.location}</h1>
           <h2> Population</h2>
           <h2 className="red-numbers">{formatNumber(countryData?.population as number)}</h2>
-          <h4>% of Population <span className="percentage-numbers">{formatNumber(vaccinatedOneDosePopulationPercentage())}</span></h4>
         </div>
         <div className="vaccinated-one-dose-container">
           <h2>Vaccinated (at least 1 dose)</h2>
           <h2 className="red-numbers">{formatNumber(vaccinatedOneDose())}</h2>
-          <h4>% of Population <span className="percentage-numbers">{formatNumber(vaccinatedTwoDosesPopulationPercentage())}</span></h4>
+          <h4>% of Population <span className="percentage-numbers">{formatNumber(vaccinatedOneDosePopulationPercentage())}</span>
+          </h4>
         </div>
         <div className="vaccinated-two-doses-container">
           <h2>Vaccinated (received 2 doses)</h2>
           <h2 className="red-numbers">{formatNumber(vaccinatedTwoDoses())}</h2>
+          <h4>% of Population <span className="percentage-numbers">{formatNumber(vaccinatedTwoDosesPopulationPercentage())}</span>
+          </h4>
+          <br/>
           <h4>Received more than 2 doses <span
             className="percentage-numbers">{formatNumber(vaccinatedMoreThanTwoDoses()) || "¯\\_(ツ)_/¯"}</span></h4>
         </div>
