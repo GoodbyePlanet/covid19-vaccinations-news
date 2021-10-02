@@ -17,14 +17,32 @@ const App = (): JSX.Element => {
       const data = await fetch('https://covid.ourworldindata.org/data/owid-covid-data.json');
       const dataJson = await data.json();
 
-      setSerbiaData(dataJson.SRB);
-      setBosniaData(dataJson.BIH);
+      const extractData = (countryKey: string) => {
+        const covidData = dataJson[countryKey]?.data;
+        for (let i = covidData.length - 1; i >= 0; i--) {
+          const hasVaccinationData = (covidData[i].people_vaccinated && covidData[i].people_vaccinated_per_hundred &&
+            covidData[i].people_fully_vaccinated && covidData[i].people_fully_vaccinated_per_hundred) || covidData[i].total_boosters;
+
+          if (hasVaccinationData) {
+            return {...dataJson[countryKey], data: {...(covidData[i])}};
+          }
+        }
+      }
+
+      const setSerbiaVaccinationData = (): void => {
+        setSerbiaData(extractData("SRB"));
+      }
+
+      const setBosniaVaccinationData = (): void => {
+        setBosniaData(extractData("BIH"));
+      }
+
+      setSerbiaVaccinationData();
+      setBosniaVaccinationData();
     }
 
     getCovidData();
   }, []);
-
-  const dateOfData = (): string => serbiaData?.data[serbiaData.data.length - 2].date as string;
 
   const createResourceLink = (title: string, link: string): JSX.Element => {
     return <a className="red-numbers"
@@ -38,7 +56,7 @@ const App = (): JSX.Element => {
       <Particles options={particlesOptions as ISourceOptions}/>
       <header className="header">
         <h1>Covid-19 Vaccinations News</h1>
-        <h4 className="percentage-numbers">Data taken on {dateOfData()} from
+        <h4 className="percentage-numbers">Data taken on {serbiaData?.data.date} from
           {createResourceLink(" Our World in Data", "https://ourworldindata.org/coronavirus")}
         </h4>
         <h5>Created by {createResourceLink(" GoodbyePlanet", "https://github.com/GoodbyePlanet")}

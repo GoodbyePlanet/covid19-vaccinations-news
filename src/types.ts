@@ -2,7 +2,7 @@ export interface CovidCountry {
   location: string;
   population: number;
   cardiovasc_death_rate: number;
-  data: CovidMeta[];
+  data: CovidMeta;
 }
 
 export interface CovidMeta {
