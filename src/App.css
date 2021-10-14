@@ -1,6 +1,7 @@
 body {
     font-family: "Roboto Mono Light for Powerline", serif;
     color: #ced7e3;
+    background: radial-gradient(#350606, #000);
 }
 
 h1, h2, h4, h5 {

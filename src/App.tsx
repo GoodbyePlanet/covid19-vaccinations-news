@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Particles from "react-tsparticles";
-import {Skeleton} from "@mui/material";
 import {ISourceOptions} from "tsparticles";
 import {CovidCountry} from "./types";
 import Country from "./Country";
@@ -8,6 +7,7 @@ import Country from "./Country";
 import particlesOptions from "./particles.json";
 
 import './App.css';
+import Skeleton from "./Skeleton";
 
 const App = (): JSX.Element => {
   const [serbiaData, setSerbiaData] = useState<CovidCountry>();
@@ -52,7 +52,7 @@ const App = (): JSX.Element => {
         {serbiaData?.data.date ?
           (<h4 className="percentage-numbers">Data taken on {serbiaData?.data.date} from
           {createResourceLink(" Our World in Data", "https://ourworldindata.org/coronavirus")}
-        </h4>) : <Skeleton component="h4" animation="wave" height={25} width={500} sx={{margin: "auto"}} />}
+        </h4>) : <Skeleton elements={["h4"]}  width={500}/>}
         <h5>Created by {createResourceLink(" GoodbyePlanet", "https://github.com/GoodbyePlanet")}
         </h5>
         <br/>
