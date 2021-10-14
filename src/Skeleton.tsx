@@ -9,7 +9,7 @@ interface SkeletonProps {
 const Skeleton = ({elements, width}: SkeletonProps): JSX.Element => {
   return (
     <>
-      {elements.map(element => <MuiSkeleton animation="wave" component={element} variant="text" width={width} sx={{
+      {elements.map((element, index) => <MuiSkeleton key={index} animation="wave" component={element} variant="text" width={width} sx={{
         marginLeft: 'auto',
         marginRight: 'auto',
         bgcolor: '#3b2424'
