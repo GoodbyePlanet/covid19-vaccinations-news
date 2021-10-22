@@ -3,11 +3,13 @@ import Particles from "react-tsparticles";
 import {ISourceOptions} from "tsparticles";
 import {CovidCountry} from "./types";
 import Country from "./Country";
+import Skeleton from "./Skeleton";
 
 import particlesOptions from "./particles.json";
 
 import './App.css';
-import Skeleton from "./Skeleton";
+
+const COVID_DATA_URL = 'https://covid.ourworldindata.org/data/owid-covid-data.json';
 
 const App = (): JSX.Element => {
   const [serbiaData, setSerbiaData] = useState<CovidCountry>();
@@ -15,7 +17,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     const getCovidData = async () => {
-      const data = await fetch('https://covid.ourworldindata.org/data/owid-covid-data.json');
+      const data = await fetch(COVID_DATA_URL);
       const dataJson = await data.json();
 
       const extractData = (countryKey: string) => {
